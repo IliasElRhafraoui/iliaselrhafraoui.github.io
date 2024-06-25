@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
-    background-image: url("images/fdmer.jpg");
+    background:linear-gradient(#64b6e6, #dee0fe);
     background-size: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
