@@ -66,7 +66,22 @@ fetch('https://fleetmonitoring.euro-argo.eu/floats/multi-lines-search/pages?page
     floatListDynamic.forEach(function (float) {
         let card = templateHtml.replace(/{{wmo}}/g, float.wmo);
         card = card.replace(/{{statusCode}}/g, float.statusCode);
-        card = card.replace(/{{lastCycleBasicInfo.date}}/g, float.lastCycleBasicInfo.date);
+        if(float.lastCycleBasicInfo.date != null){                    
+         
+            // On utilise moment.js pour formater la date du cycle en format DD-MM-YYYY, hh:mm
+            let cycleDateFromated = moment(float.lastCycleBasicInfo.date).format('DD-MM-YYYY, hh:mm');
+            card = card.replace(/{{lastCycleBasicInfo.date}}/g, cycleDateFromated);         
+          
+        }
+    
+        else{
+            let launchDate = float.deployment.launchDate;        
+            
+            // On utilise moment.js pour formater la date du cycle en format DD-MM-YYYY, hh:mm
+            
+            let launchDateFormated = moment(float.deployment.launchDate).format('DD-MM-YYYY, hh:mm');
+            card = card.replace(/{{lastCycleBasicInfo.date}}/g, launchDateFormated);
+        }
         card = card.replace(/{{plarform.type}}/g, float.platform.type);
         card = card.replace(/{{transmissionSystem}}/g, float.transmissionSystem);
         card = card.replace(/{{battery.status}}/g, float.battery.status);
