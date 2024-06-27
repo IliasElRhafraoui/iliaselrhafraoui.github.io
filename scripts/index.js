@@ -10,7 +10,6 @@ L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/M
 
 setTimeout(() => map.invalidateSize(), 1500);
 
-//liste des points
 let listPoints = [];
 
 let floatListStatic = [
@@ -74,13 +73,12 @@ fetch('https://fleetmonitoring.euro-argo.eu/floats/multi-lines-search/pages?page
         card = card.replace(/{{lastCycleBasicInfo.numCycle}}/g, float.lastCycleBasicInfo.numCycle);
         main.innerHTML = main.innerHTML + card;
 
-        //Dessiner le point flotteur sur la carte 
         if (float.lastCycleBasicInfo.lat != null && float.lastCycleBasicInfo.lon != null) {
             let = marker = L.circleMarker([float.lastCycleBasicInfo.lat, float.lastCycleBasicInfo.lon], {
-                radius: 5,
+                radius: 7,
                 color: '#ffc107',
                 fill: true,
-                stroke: false,
+                stroke: true,
                 fillOpacity: 1
             }).addTo(map)
                 .bindPopup(`<strong>WMO: </strong> ${float.wmo} <br>
@@ -127,7 +125,7 @@ let templateHtml = `
                 <b>Status de batterie</b>: {{battery.status}} <br>
             </div>
             <div id="cycle-line">
-                <button class="btn-cycle btn btn-warning" onclick="afficherNumCycle({{wmo}},{{lastCycleBasicInfo.numCycle}})">Voir le dernier cycle</button>
+                <button class="btn-cycle btn btn-warning" onclick="afficherNumCycle({{wmo}},{{lastCycleBasicInfo.numCycle}})">Voir N° cycle</button>
                 <strong class="num-cycle" id="numCycle{{wmo}}"></strong>
             </div>
         </div>
