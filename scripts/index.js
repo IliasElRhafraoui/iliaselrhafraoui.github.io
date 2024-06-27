@@ -76,7 +76,8 @@ fetch('https://fleetmonitoring.euro-argo.eu/floats/multi-lines-search/pages?page
         if (float.lastCycleBasicInfo.lat != null && float.lastCycleBasicInfo.lon != null) {
             let = marker = L.circleMarker([float.lastCycleBasicInfo.lat, float.lastCycleBasicInfo.lon], {
                 radius: 7,
-                color: '#ffc107',
+                fillColor: "#ffc107",
+                color: '#333',
                 fill: true,
                 stroke: true,
                 fillOpacity: 1
